@@ -526,12 +526,12 @@ if st.session_state["smd_executado"]:
         # gt: interaction of g * t
         
         # data before the treatment
-        df_before = df_aux[['2022_2', 'tratamento']]
+        df_before = df_aux[['2023_2', 'tratamento']]
         df_before['t'] = 0
         df_before.columns = ['yll_rate', 'g', 't']
         
         # data after the treatment
-        df_after = df_aux[['2022_3', 'tratamento']]
+        df_after = df_aux[['2023_3', 'tratamento']]
         df_after['t'] = 1
         df_after.columns = ['yll_rate', 'g', 't']
         
