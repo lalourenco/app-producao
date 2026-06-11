@@ -569,8 +569,8 @@ if st.session_state["smd_executado"]:
         p_valor = ols_model.pvalues['gt']
 
         st.subheader("📈 Resultado da Análise de Impacto")
-
-       if p_valor < 0.05:
+        
+        if p_valor < 0.05:
             st.success(
                 f"✅ Houve evidência estatística de impacto da intervenção "
                 f"(coeficiente = {impacto:.2f}; p = {p_valor:.4f})."
@@ -579,7 +579,7 @@ if st.session_state["smd_executado"]:
             st.write(
                 f"O efeito estimado da intervenção foi de **{impacto:.2f} anos de vida perdidos por morte por mil habitantes no grupo intervenção em comparação ao grupo controle**."
             )
-         
+        
         else:
             st.warning(
                 f"⚠️ Não há evidência estatística suficiente para afirmar que a intervenção gerou resultado"
