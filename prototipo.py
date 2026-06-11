@@ -587,7 +587,8 @@ if st.session_state["smd_executado"]:
 
 
         if st.button("Mostrar análise estatística completa"):
-            st.text(st.session_state["ols_model"].summary().as_text())
+            #st.text(st.session_state["ols_model"].summary().as_text())
+            st.code(str(ols_model.summary()))
 
 
 
