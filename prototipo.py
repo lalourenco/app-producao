@@ -67,7 +67,7 @@ if "historico_resultados" not in st.session_state:
 
 # Mensagem inicial
 st.info("""
-## Orientações iniciais
+#### Orientações iniciais
 
 Esta ferramenta utiliza métodos de inferência causal para avaliação dos resultados.
 
@@ -559,9 +559,29 @@ if st.session_state["smd_executado"]:
         df_reg['gt'] = df_reg.g * df_reg.t
         
         ols = ols('yll_rate ~ g + t + gt', data=df_reg).fit()
-        st.code(str(ols.summary()))        
-
+        st.session_state["ols_model"] = ols_model
+        
         st.success("✅ Análise executada")
+
+        # Resultados
+
+        impacto = ols_model.params['gt']
+
+        st.subheader("📈 Resultado da Análise de Impacto")
+
+        st.metric(
+            "Impacto estimado da intervenção",
+            f"{impacto:.2f}"
+        )
+
+        st.write(
+            f"O efeito estimado da intervenção foi de **{impacto:.2f} anos de vida perdidos por morte por mil habitantes**."
+        )
+
+        if st.button("Mostrar análise estatística completa"):
+            st.text(st.session_state["ols_model"].summary().as_text())
+
+
 
 
 # In[ ]:
