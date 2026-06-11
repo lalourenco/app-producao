@@ -519,7 +519,7 @@ if st.session_state["smd_executado"]:
         dados_psm = st.session_state["psm"][['IBGE', 'tratamento']].reset_index(drop = True)
         df_impacto = pd.merge(dados_psm, df_intervencao, on = 'IBGE', how = 'left')
 
-        df_aux = df_impacto[['tratamento', '2022_2', '2022_3']]
+        df_aux = df_impacto[['tratamento', '2023_2', '2023_3']]
 
         # group g: 0 control group (PA), 1 treatment group (NJ)
         # t: 0 before treatment (min wage raise), 1 after treatment
