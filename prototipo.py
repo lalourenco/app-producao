@@ -65,6 +65,23 @@ st.title("Monitoramento e Avaliação de Políticas Públicas")
 if "historico_resultados" not in st.session_state:
     st.session_state.historico_resultados = []
 
+# Mensagem inicial
+st.info("""
+## Orientações iniciais
+
+Esta ferramenta utiliza métodos de inferência causal para avaliação dos resultados.
+
+Antes de executar sua análise:
+
+- Organize em arquivos separados os dados (covariáveis) dos grupos controle e intervenção.
+- Organize os dados do desfecho antes e após a exposição.
+
+Importante:
+
+- Os arquivos devem estar nos formatos `.csv` ou `.xlsx`.
+- Não é possível fornecer variáveis categóricas
+""")
+
 # Upload arquivo grupo tratamento
 
 uploaded_tratamento = st.file_uploader(
