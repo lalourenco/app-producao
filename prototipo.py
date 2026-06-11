@@ -558,7 +558,7 @@ if st.session_state["smd_executado"]:
         # create the interaction 
         df_reg['gt'] = df_reg.g * df_reg.t
         
-        ols = ols('yll_rate ~ g + t + gt', data=df_reg).fit()
+        ols_model = ols('yll_rate ~ g + t + gt', data=df_reg).fit()
         st.session_state["ols_model"] = ols_model
         
         st.success("✅ Análise executada")
