@@ -191,7 +191,7 @@ if not df_combined.empty:
     colunas_disponiveis = [c for c in df_combined.columns.tolist() if c != "tratamento"]
 
     colunas_usar = st.multiselect(
-        "🔍 Selecione os campos de entrada (preditores) para o treinamento:",
+        ":material/functions: Selecione os preditores (covariáveis) para o treinamento:",
         options = colunas_disponiveis)
 
     coluna_alvo = "tratamento"
@@ -267,7 +267,7 @@ if not df_combined.empty:
     # Seleção do modelo
     # -------------------------
 
-    st.subheader("🤖 Selecione o Modelo")
+    st.subheader(":material/model_training: Selecione o Modelo")
     
     if st.button("Regressão Logística"):
         lr = LogisticRegression(solver = "newton-cholesky", random_state = 42)
@@ -279,7 +279,7 @@ if not df_combined.empty:
         dados_modelo = st.session_state["dados_modelo"]
     
         st.subheader(
-            f"📊 Métricas de desempenho do modelo: {dados_modelo['modelo']}"
+            f":material/analytics: Métricas de desempenho do modelo: {dados_modelo['modelo']}"
         )
     
         col1, col2, col3, col4 = st.columns(4)
@@ -300,7 +300,7 @@ if not df_combined.empty:
 
 if not st.session_state["resultado"].empty:
 
-    st.subheader("🔗 Pareamento (PSM)")
+    st.subheader(":material/calculate: Pareamento (PSM)")
     
     # Função para realizar o PSM
     def psm(resultado):
@@ -433,7 +433,7 @@ if not st.session_state["resultado"].empty:
 
 if not st.session_state["psm"].empty:
 
-    st.subheader("Verificar o balancemaneto das covariáveis")
+    st.subheader(":material/lab_research: Verificar o balancemaneto das covariáveis")
 
     covariaveis = colunas_usar
 
@@ -465,7 +465,7 @@ if not st.session_state["psm"].empty:
 
      # Executar análise
 
-    if st.button("Realizar análise estatística"):
+    if st.button(":material/analytics: Realizar análise estatística"):
 
         teste_smd_antes = teste_SMD(st.session_state["resultado"], covariaveis)
         teste_smd_depois = teste_SMD(st.session_state["psm"], covariaveis)
@@ -504,7 +504,7 @@ if not st.session_state["psm"].empty:
 
 if st.session_state["smd_executado"]:
 
-    st.subheader("Executar análise de impacto")
+    st.subheader(":material/assessment: Executar análise de impacto")
 
     # Upload arquivo com os dados do desfecho
     uploaded_desfecho = st.file_uploader(
@@ -568,7 +568,7 @@ if st.session_state["smd_executado"]:
         impacto = ols_model.params['gt']
         p_valor = ols_model.pvalues['gt']
 
-        st.subheader("📈 Resultado da Análise de Impacto")
+        st.subheader(":material/analytics: Resultado da Análise de Impacto")
         
         if p_valor < 0.05:
             st.success(
@@ -586,7 +586,7 @@ if st.session_state["smd_executado"]:
             )
 
 
-        if st.button("Mostrar análise estatística completa"):
+        if st.button(":material/clinical_notes: Mostrar análise estatística completa"):
             #st.text(st.session_state["ols_model"].summary().as_text())
             st.code(str(ols_model.summary()))
 
